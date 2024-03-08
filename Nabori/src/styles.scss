@@ -1,9 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-$intro-animation-duration: 3s;
+$overlay-fade-out-duration: 3s;
+$naboria-fade-in-duration: 3s;
+$naboria-fade-in-delay: $overlay-fade-out-duration - 1;
+$coming-soon-fade-in-duration: 3s;
+$coming-soon-fade-in-delay: $naboria-fade-in-delay + $overlay-fade-out-duration - 1;
 
 *{
   font-family: "Anton", sans-serif;
+}
+
+@mixin absolute-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #video-wrap {
@@ -12,6 +24,7 @@ $intro-animation-duration: 3s;
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 #video {
@@ -27,13 +40,28 @@ $intro-animation-duration: 3s;
   height: auto;
 }
 
-#coming-soon-message-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+#naboria-container{
+  @include absolute-container;
+  #naboria-content{
+    position: relative;
+    left: 0%;
+    top: 25%;
+    color: black;
+    z-index: 1;
+    font-size: 12vh;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    opacity: 0;
+    animation: fade-in $naboria-fade-in-duration, slide-up-naboria $naboria-fade-in-duration;
+    animation-delay: $naboria-fade-in-delay;
+    animation-fill-mode: forwards;
+  }
 
+}
+
+#coming-soon-message-container {
+  @include absolute-container;
   #coming-soon-message {
     position: relative;
     left: 0%;
@@ -41,13 +69,13 @@ $intro-animation-duration: 3s;
     color: black;
     z-index: 1;
     font-size: 12vh;
-    text-align: center;
-    opacity: 0;
-    animation: fade-in $intro-animation-duration, slide-up $intro-animation-duration;
-    animation-delay: ($intro-animation-duration - 1);
-    animation-fill-mode: forwards;
     font-weight: 400;
     font-style: normal;
+    text-align: center;
+    opacity: 0;
+    animation: fade-in $coming-soon-fade-in-duration, slide-up-coming-soon $coming-soon-fade-in-duration;
+    animation-delay: $coming-soon-fade-in-delay;
+    animation-fill-mode: forwards;
   }
 }
 
@@ -60,11 +88,21 @@ $intro-animation-duration: 3s;
   color: black;
   background-color: black;
   z-index: 2;
-  animation: fade-out $intro-animation-duration;
+  animation: fade-out $overlay-fade-out-duration;
   animation-fill-mode: forwards;
 }
 
-@keyframes slide-up {
+@keyframes slide-up-naboria {
+  from{
+    top:25%
+  }
+
+  to{
+    top: 20%;
+  }
+}
+
+@keyframes slide-up-coming-soon {
   from{
     top:40%
   }
