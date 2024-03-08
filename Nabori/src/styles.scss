@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 $intro-animation-duration: 3s;
+
+*{
+  font-family: "Anton", sans-serif;
+}
 
 #video-wrap {
   position: fixed;
@@ -38,9 +43,11 @@ $intro-animation-duration: 3s;
     font-size: 12vh;
     text-align: center;
     opacity: 0;
-    animation: fade-in $intro-animation-duration;
-    animation-delay: $intro-animation-duration;
+    animation: fade-in $intro-animation-duration, slide-up $intro-animation-duration;
+    animation-delay: ($intro-animation-duration - 1);
     animation-fill-mode: forwards;
+    font-weight: 400;
+    font-style: normal;
   }
 }
 
@@ -55,6 +62,16 @@ $intro-animation-duration: 3s;
   z-index: 2;
   animation: fade-out $intro-animation-duration;
   animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+  from{
+    top:40%
+  }
+
+  to{
+    top: 35%;
+  }
 }
 
 @keyframes fade-in {

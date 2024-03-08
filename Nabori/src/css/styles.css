@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+* {
+  font-family: "Anton", sans-serif;
+}
+
 #video-wrap {
   position: fixed;
   left: 0;
@@ -36,9 +41,11 @@
   font-size: 12vh;
   text-align: center;
   opacity: 0;
-  animation: fade-in 3s;
-  animation-delay: 3s;
+  animation: fade-in 3s, slide-up 3s;
+  animation-delay: 2s;
   animation-fill-mode: forwards;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .overlay {
@@ -54,6 +61,14 @@
   animation-fill-mode: forwards;
 }
 
+@keyframes slide-up {
+  from {
+    top: 40%;
+  }
+  to {
+    top: 35%;
+  }
+}
 @keyframes fade-in {
   from {
     opacity: 0;
